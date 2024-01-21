@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Booking</title>
+    <script>
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var pickupAddress = document.getElementById('pickupAddress').value;
+            var dropoffAddress = document.getElementById('dropoffAddress').value;
+            var transmissionType = document.getElementById('transmissionType').value;
+            var bookingTimeAsap = document.getElementById('asap').checked;
+            var bookingTimeSchedule = document.getElementById('scheduleTime').checked;
+            var scheduledTime = document.getElementById('scheduledTime').value;
+
+            if (!name || !phoneNumber || !pickupAddress || !dropoffAddress ||
+                transmissionType === "NA" || (!bookingTimeAsap && !bookingTimeSchedule)) {
+                alert('Please fill out all required fields and select a transmission type and booking time.');
+                return false;
+            }
+
+            if (bookingTimeSchedule && !isValidScheduleTime(scheduledTime)) {
+                alert('Scheduled time must be at least 1 hour from now.');
+                return false;
+            }
+
+            var message = "SafeRide Booking Details:\n" +
+                "Name: " + name + "\n" +
+                "Phone Number: " + phoneNumber + "\n" +
+                "Pick-Up Address: " + pickupAddress + "\n" +
+                "Drop-Off Address: " + dropoffAddress + "\n" +
+                "Number of People: " + document.getElementById('numberOfPeople').value + "\n" +
+                "Car Type: " + document.getElementById('carType').value + "\n" +
+                "Transmission Type: " + transmissionType + "\n" +
+                "License Plate: " + document.getElementById('licensePlate').value + "\n" +
+                "Booking Time: " + (bookingTimeAsap ? "ASAP" : (bookingTimeSchedule ? "Scheduled for " + scheduledTime : "Not specified"));
+
+            var encodedMessage = encodeURIComponent(message);
+            var businessPhoneNumber = "12894020070"; // Your WhatsApp Business phone number
+            var whatsappUrl = "https://wa.me/" + businessPhoneNumber + "?text=" + encodedMessage;
+
+            window.open(whatsappUrl, '_blank');
+
+        }
+
+        function isValidScheduleTime(scheduledTime) {
+            var currentTime = new Date();
+            var scheduleTime = new Date(scheduledTime);
+
+            return scheduleTime.getTime() - currentTime.getTime() >= 3600000; // 1 hour in milliseconds
+        }
+
+        function toggleDateTimeInput() {
+            var scheduleOption = document.getElementById("scheduleTime").checked;
+            document.getElementById("scheduledTime").disabled = !scheduleOption;
+            if (scheduleOption) {
+                document.getElementById("asap").checked = false;
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById("asap").checked = false;
+            document.getElementById("scheduledTime").checked = false;
+            document.getElementById("scheduledTime").disabled = true;
+        };
+    </script>
+    
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* align items vertically */
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            text-align: center; /* Center align the container */
+            width: 80%;
+        }
+
+        form {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px; /* Add space between title and form */
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            padding-top: 4%;
+            color: #333;
+            text-align: left;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .address {
+            flex: 3;
+            margin-right: 10px;
+        }
+
+        .postal-code, .city {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .row > div:last-child {
+            margin-right: 0;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px; /* Spacing above inputs */
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #555;
+            }
+
+        @media (max-width: 375px) {
+            header {
+                text-align: center;
+            }
+
+                header li, header nav {
+                    float: none;
+                    width: 100%;
+                    display: block;
+                }
+
+                header a {
+                    display: block;
+                    padding: 10px;
+                    color: #e8491d; /* Change color for better visibility */
+                }
+
+                header #branding h1, header nav {
+                    text-align: center;
+                }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .address, .postal-code, .city {
+                flex: none;
+                margin-right: 0;
+                width: 100%;
+            }
+
+            .container, .form-container {
+                width: 95%;
+            }
+
+            /* Adjust font sizes and other elements if needed */
+            header #branding h1 {
+                font-size: 20px; /* Adjust font size for smaller screens */
+            }
+
+            /* Other adjustments for smaller screens can be added here */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1 id="tt" style="padding-top:13%"> Booking Request Form</h1>
+
+
+
+
+    <div>
+        <form onsubmit="event.preventDefault(); return submitForm();">
+
+            <div class="row">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber">
+                </div>
+            </div>
+
+            <h3>Pick-Up</h3>
+            <div class="row">
+                <div class="address">
+                    <label for="pickupAddress">Address:</label>
+                    <input type="text" id="pickupAddress" name="pickupAddress">
+                </div>
+                <div class="postal-code">
+                    <label for="pickupPostalCode">Postal Code:</label>
+                    <input type="text" id="pickupPostalCode" name="pickupPostalCode">
+                </div>
+                <div class="city">
+                    <label for="pickupCity">City:</label>
+                    <input type="text" id="pickupCity" name="pickupCity">
+                </div>
+            </div>
+
+            <h3>Drop-Off</h3>
+            <div class="row">
+                <div class="address">
+                    <label for="dropoffAddress">Address:</label>
+                    <input type="text" id="dropoffAddress" name="dropoffAddress">
+                </div>
+                <div class="postal-code">
+                    <label for="dropoffPostalCode">Postal Code:</label>
+                    <input type="text" id="dropoffPostalCode" name="dropoffPostalCode">
+                </div>
+                <div class="city">
+                    <label for="dropoffCity">City:</label>
+                    <input type="text" id="dropoffCity" name="dropoffCity">
+                </div>
+            </div>
+
+
+
+            <label for="numberOfPeople">Number of People:</label><br>
+            <input type="number" id="numberOfPeople" name="numberOfPeople" value="1" min="1"><br>
+
+            <label for="carType">Car Type, Model, Year, Color:</label><br>
+            <input type="text" id="carType" name="carType"><br>
+
+
+
+
+            <label for="transmissionType">Car Transmission Type:</label><br>
+            <select id="transmissionType" name="transmissionType">
+                <option value="NA">Please Choose</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select><br>
+
+
+            <label for="licensePlate">License Plate:</label><br>
+            <input type="text" id="licensePlate" name="licensePlate"><br>
+
+            <div class="booking-time">
+                <br />
+                <label for="bookingTime">Booking Time:</label>
+                <input type="radio" id="asap" name="bookingTime" value="ASAP" checked onchange="toggleDateTimeInput()">
+                <label for="asap" style="padding-right:5%;">ASAP</label>
+
+
+                <input type="radio" id="scheduleTime" name="bookingTime" value="Schedule" onchange="toggleDateTimeInput()">
+                <label for="scheduleTime">Schedule for later:</label>
+                <input type="datetime-local" id="scheduledTime" name="scheduledTime" disabled>
+            </div>
+
+
+
+            <input type="submit" value="Submit Booking Request">
+            <script>
+                function toggleDateTimeInput() {
+                    var scheduleOption = document.getElementById("scheduleTime").checked;
+                    document.getElementById("scheduledTime").disabled = !scheduleOption;
+                }
+            </script>
+        </form>
+    </div>
+
+    <hr style="width:80%; border:1px solid black; margin-top: 20px; margin-bottom: 20px;" />
+
+    <a href="tel:+1234567890" class="button">Or Give Us A CALL</a>
+
+    <style>
+        .button {
+            display: inline-block;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px; /* Top and Bottom padding: 10px, Left and Right padding: 20px */
+            text-decoration: none; /* Remove underline from link */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+        }
+
+            .button:hover {
+                background-color: #333333; /* Slightly lighter black for hover */
+                color: #dddddd; /* Light grey text for hover */
+            }
+    </style>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UDrinkWeDrive - Your Trusted Designated Driver Service</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container, .form-container {
+            text-align: center;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        header {
+            background: #000;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #474747 3px solid;
+        }
+
+            header a {
+                color: #ffffff;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+
+                header a:hover {
+                    color: #e8491d;
+                    font-weight: bold;
+                }
+
+            header .highlight, header .current a {
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            header ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                overflow: hidden;
+            }
+
+            header li {
+                float: left;
+                display: inline;
+                padding: 0 20px 0 20px;
+            }
+
+            header #branding {
+                float: left;
+            }
+
+                header #branding h1 {
+                    margin: 0;
+                }
+
+            header nav {
+                float: right;
+                margin-top: 10px;
+            }
+
+        #showcase, #boxes, form {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .address {
+            flex: 3;
+            margin-right: 10px;
+        }
+
+        .postal-code, .city {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .row > div:last-child {
+            margin-right: 0;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #555;
+            }
+
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        @media (max-width: 375px) {
+            header {
+                text-align: center;
+            }
+
+                header li, header nav {
+                    float: none;
+                    width: 100%;
+                    display: block;
+                }
+
+                header a {
+                    display: block;
+                    padding: 10px;
+                    color: #e8491d; /* Change color for better visibility */
+                }
+
+                header #branding h1, header nav {
+                    text-align: center;
+                }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .address, .postal-code, .city {
+                flex: none;
+                margin-right: 0;
+                width: 100%;
+            }
+
+            .container, .form-container {
+                width: 95%;
+            }
+
+            /* Adjust font sizes and other elements if needed */
+            header #branding h1 {
+                font-size: 20px; /* Adjust font size for smaller screens */
+            }
+
+            /* Other adjustments for smaller screens can be added here */
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="width:100%;" id="branding">
+                <h1 style="color:white"><span class="highlight">UDrinkWeDrive</span> - Your Trusted Designated Driver</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="showcase">
+            <div class="container">
+                <h1>Affordable Professional Designated Driving Service</h1>
+                <p>Ensuring you and your vehicle arrive home safely.</p>
+            </div>
+        </section>
+
+
+        <section id="boxes">
+            <div class="container">
+                <div class="box">
+                    <h3>Our Services</h3>
+                    <p>We offer reliable and affordable designated driver services to ensure your safe journey home.</p>
+                </div>
+                
+                <div class="box">
+                    <h3>Contact Us</h3>
+                    <p>Have questions? Contact us anytime for more information about our services.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top:5%">
+
+            <a href="boo.html" class="button">Book a Ride Now!</a> <br />
+            <hr style="width:80%; border:1px solid black; margin-top: 20px; margin-bottom: 20px;" />
+
+            <a style="margin-top:5%;" href="tel:+1234567890" class="button">CALL US</a>
+            <style>
+                .button {
+                    display: inline-block;
+                    background-color: #000000; /* Black background */
+                    color: #ffffff; /* White text */
+                    padding: 10px 20px; /* Top and Bottom padding: 10px, Left and Right padding: 20px */
+                    text-decoration: none; /* Remove underline from link */
+                    border-radius: 5px; /* Rounded corners */
+                    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+                }
+
+                    .button:hover {
+                        background-color: #333333; /* Slightly lighter black for hover */
+                        color: #dddddd; /* Light grey text for hover */
+                    }
+            </style>
+
+        </section>
+    </div>
+
+    <footer>
+        <p>UDrinkWeDrive, Copyright &copy; 2024</p>
+    </footer>
+</body>
+</html>
